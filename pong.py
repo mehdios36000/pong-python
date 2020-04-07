@@ -36,8 +36,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx=2
-ball.dy=2
+ball.dx=0.1
+ball.dy=0.1
 
 
 #function for moving the paddle
@@ -80,3 +80,21 @@ window.onkeypress(paddle_2_down,"Down")
 #main game loop
 while True:
     window.update()
+
+    #move the ball
+    ball.setx(ball.xcor()+ball.dx)
+    ball.sety(ball.ycor()+ball.dy)
+    #border checking
+    if ball.ycor()>290:
+        ball.sety(290)
+        ball.dy*=-1
+    if ball.ycor()<-290:
+        ball.sety(-290)
+        ball.dy*=-1
+    if ball.xcor()>390:
+        ball.setx(390)
+        ball.dx*=-1
+    if ball.xcor()<-390:
+        ball.setx(-390)
+        ball.dx*=-1
+        
