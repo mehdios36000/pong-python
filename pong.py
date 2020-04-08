@@ -40,8 +40,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx=0.08
-ball.dy=0.08
+ball.dx=0.1
+ball.dy=0.1
 
 
 #score panel
