@@ -3,6 +3,8 @@
 
 
 import turtle
+from playsound import playsound
+
 
 
 
@@ -11,7 +13,9 @@ window.title("pong game is fun")
 window.bgcolor("black")
 window.setup(width=800,height=600)
 window.tracer(0)
-
+#score
+score_1=0
+score_2=0
 #paddle 1
 paddle_1=turtle.Turtle()
 paddle_1.speed(0)
@@ -36,8 +40,18 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx=0.1
-ball.dy=0.1
+ball.dx=0.08
+ball.dy=0.08
+
+
+#score panel
+panel=turtle.Turtle()
+panel.speed()
+panel.color("white")
+panel.penup()
+panel.hideturtle()
+panel.goto(0,260)
+panel.write("player 1: 0  player 2: 0",align="center",font=("Courier",24,"normal"))
 
 
 #function for moving the paddle
@@ -94,7 +108,32 @@ while True:
     if ball.xcor()>390:
         ball.goto(0,0)
         ball.dx*=-1
+        score_1+=1
+        panel.clear()
+        panel.write("player 1: {}  player 2: {} ".format(score_1,score_2),align="center",font=("Courier",24,"normal"))
     if ball.xcor()<-390:
         ball.goto(0,0)
         ball.dx*=-1
+        score_2+=1
+        panel.clear()
+        panel.write("player 1: {}  player 2: {} ".format(score_1,score_2),align="center",font=("Courier",24,"normal"))
+
+    if paddle_1.ycor()<-200:
+        paddle_1.sety(-200) 
+    if paddle_1.ycor()>200:
+        paddle_1.sety(200)
+    if paddle_2.ycor()<-200:
+        paddle_2.sety(-200) 
+    if paddle_2.ycor()>200:
+        paddle_2.sety(200)
+    #paddle and ball collisions
+    if(ball.xcor()>340 and ball.xcor()<350) and (ball.ycor()<paddle_2.ycor()+40 and ball.ycor()>paddle_2.ycor()-40):
+        ball.setx(340)
+        ball.dx*=-1
+    if(ball.xcor()<-340 and ball.xcor()>-350) and (ball.ycor()<paddle_1.ycor()+40 and ball.ycor()>paddle_1.ycor()-40):
+        ball.setx(-340)
+        ball.dx*=-1
+
+        
+    
         
