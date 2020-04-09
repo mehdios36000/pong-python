@@ -3,7 +3,7 @@
 
 
 import turtle
-from playsound import playsound
+
 
 
 
@@ -40,8 +40,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0,0)
-ball.dx=0.1
-ball.dy=0.1
+ball.dx=0.2
+ball.dy=0.2
 
 
 #score panel
